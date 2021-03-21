@@ -2,6 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.comtest = void 0;
 const comtest = () => {
-    alert('test');
+    return 'hoge';
 };
 exports.comtest = comtest;

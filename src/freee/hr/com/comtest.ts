@@ -1,3 +1,3 @@
-export const comtest = () => {
-  alert('test')
+export const comtest = (): string => {
+  return 'hoge'
 }

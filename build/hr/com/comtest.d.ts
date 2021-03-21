@@ -1,1 +1,1 @@
-export declare const comtest: () => void;
+export declare const comtest: () => string;
