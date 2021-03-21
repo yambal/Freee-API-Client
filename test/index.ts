@@ -1,3 +1,3 @@
 import * as free from '../build/index'
 
-free.hr.com.comtest()
+free.hr.user.getMe('token')
