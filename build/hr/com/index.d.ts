@@ -1,0 +1,1 @@
+export { comtest } from "./comtest";

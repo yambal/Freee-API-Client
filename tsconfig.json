@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "target": "ESNext",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "rootDir": "./src/freee",
+    "outDir": "./build",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "./build/**/*",
+    "./test/**/*"
+  ]
+}
