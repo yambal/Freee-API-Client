@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from 'axios'
 import {baseGetMe} from './baseGetMe'
 import { HrUser } from '../hrTypes'
-import { FreeeApiClientError } from '../../commonTypes'
+import { ApiClientError } from '../../commonTypes'
 
 /**
  * ログインユーザの取得
@@ -19,7 +19,7 @@ export const getMe = (token: string) => {
     })
     .catch((axiosError: AxiosError) => {
       console.log(axiosError.response)
-      const apiError: FreeeApiClientError = {
+      const apiError: ApiClientError = {
         axiosMessage: axiosError.message,
         apiMessage: axiosError.response?.data.message
       }

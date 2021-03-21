@@ -1,4 +1,4 @@
-export type FreeeApiClientError = {
-  axiosMessage: string
+export type ApiClientError = {
+  axiosMessage?: string
   apiMessage: string
 }
