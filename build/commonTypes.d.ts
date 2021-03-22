@@ -1,4 +1,4 @@
-export declare type FreeeApiClientError = {
-    axiosMessage: string;
-    apiMessage: string;
+export declare type ApiClientError = {
+    axiosMessage?: string;
+    apiMessage?: string;
 };

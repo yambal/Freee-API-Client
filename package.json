@@ -7,8 +7,9 @@
   },
   "name": "freee-api-client",
   "description": "freee api for js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "directories": {
     "test": "test"
   },
