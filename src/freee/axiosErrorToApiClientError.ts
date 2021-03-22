@@ -4,6 +4,7 @@ import {
   ApiClientErrorStatusCode,
   ApiClientErrorStatusMessage,
   ApiClientErrorApiMessage,
+  ApiClientErrorAxiosMessage,
   V1_HrUri
 } from './commonTypes'
 
@@ -46,7 +47,7 @@ export const axiosErrorToApiClientError = (axiosError: AxiosError, apiName: 'hr'
   }
 
   const apiMessage: ApiClientErrorApiMessage = axiosError.response ? axiosError.response.data : undefined
-  const axiosMessage: string = axiosError.message
+  const axiosMessage: ApiClientErrorAxiosMessage = axiosError.message
 
   return {
     statusCode,
