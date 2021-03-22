@@ -1,7 +1,15 @@
 import { AxiosError, AxiosResponse } from 'axios'
-import {baseGetMe} from './baseGetMe'
 import { HrUser } from '../hrTypes'
-import { ApiClientError } from '../../commonTypes'
+import { ApiClientError, V1_HrUri } from '../../commonTypes'
+import { axiosErrorToApiClientError } from '../../axiosErrorToApiClientError'
+
+import { hrRequest } from '../hrRequest'
+
+const URI: V1_HrUri = '/users/me'
+
+export const getMeBase = (token: string) => {
+  return hrRequest(token).get(URI)
+}
 
 /**
  * ログインユーザの取得
@@ -13,16 +21,13 @@ import { ApiClientError } from '../../commonTypes'
  */
 export const getMe = (token: string) => {
   return new Promise((resolve: (hrUser: HrUser) => void, reject) => {
-    baseGetMe(token)
+    getMeBase(token)
     .then((response: AxiosResponse) => {
       resolve(response.data)
     })
     .catch((axiosError: AxiosError) => {
       console.log(axiosError.response)
-      const apiError: ApiClientError = {
-        axiosMessage: axiosError.message,
-        apiMessage: axiosError.response?.data.message
-      }
+      const apiError: ApiClientError = axiosErrorToApiClientError(axiosError, 'hr', URI)
       reject(apiError)
     })
   })

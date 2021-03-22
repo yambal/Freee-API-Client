@@ -1,4 +1,6 @@
+import { AxiosResponse } from 'axios';
 import { HrUser } from '../hrTypes';
+export declare const getMeBase: (token: string) => Promise<AxiosResponse<any>>;
 /**
  * ログインユーザの取得
  * このリクエストの認可セッションにおけるログインユーザの情報を返します。

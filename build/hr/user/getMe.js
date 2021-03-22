@@ -1,7 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMe = void 0;
-const baseGetMe_1 = require("./baseGetMe");
+exports.getMe = exports.getMeBase = void 0;
+const axiosErrorToApiClientError_1 = require("../../axiosErrorToApiClientError");
+const hrRequest_1 = require("../hrRequest");
+const URI = '/users/me';
+const getMeBase = (token) => {
+    return hrRequest_1.hrRequest(token).get(URI);
+};
+exports.getMeBase = getMeBase;
 /**
  * ログインユーザの取得
  * このリクエストの認可セッションにおけるログインユーザの情報を返します。
@@ -12,16 +18,13 @@ const baseGetMe_1 = require("./baseGetMe");
  */
 const getMe = (token) => {
     return new Promise((resolve, reject) => {
-        baseGetMe_1.baseGetMe(token)
+        exports.getMeBase(token)
             .then((response) => {
             resolve(response.data);
         })
             .catch((axiosError) => {
             console.log(axiosError.response);
-            const apiError = {
-                axiosMessage: axiosError.message,
-                apiMessage: axiosError.response?.data.message
-            };
+            const apiError = axiosErrorToApiClientError_1.axiosErrorToApiClientError(axiosError, 'hr', URI);
             reject(apiError);
         });
     });
