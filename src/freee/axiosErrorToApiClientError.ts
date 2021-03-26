@@ -36,7 +36,7 @@ export const axiosErrorToApiClientError = (axiosError: AxiosError, apiName: 'hr'
       statusMessage = `status: ${statusCode}`
   }
 
-  const apiMessage: ApiClientErrorApiMessage = axiosError.response ? axiosError.response.data : undefined
+  const apiMessage: ApiClientErrorApiMessage = axiosError.response && axiosError.response.data && axiosError.response.data.message ? axiosError.response.data.message : undefined
   const axiosMessage: ApiClientErrorAxiosMessage = axiosError.message
 
   return {

@@ -28,7 +28,7 @@ const axiosErrorToApiClientError = (axiosError, apiName, uri, method) => {
         default:
             statusMessage = `status: ${statusCode}`;
     }
-    const apiMessage = axiosError.response ? axiosError.response.data : undefined;
+    const apiMessage = axiosError.response && axiosError.response.data && axiosError.response.data.message ? axiosError.response.data.message : undefined;
     const axiosMessage = axiosError.message;
     return {
         statusCode,
