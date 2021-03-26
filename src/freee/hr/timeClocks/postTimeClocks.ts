@@ -62,7 +62,7 @@ export const postTimeClocks = (
     })
     .catch((axiosError: AxiosError) => {
       console.log(axiosError.response)
-      const apiError: ApiClientError = axiosErrorToApiClientError(axiosError, 'hr', URI)
+      const apiError: ApiClientError = axiosErrorToApiClientError(axiosError, 'hr', URI, 'post')
       reject(apiError)
     })
   })

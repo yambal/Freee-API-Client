@@ -70,7 +70,7 @@ export const getAvailableTypes = (token: string, company_id: number, employee_id
       })
     })
     .catch((error: AxiosError) => {
-      const apiError: ApiClientError = axiosErrorToApiClientError(error, 'hr', URI)
+      const apiError: ApiClientError = axiosErrorToApiClientError(error, 'hr', URI, 'get')
       reject(apiError)
     })
   })

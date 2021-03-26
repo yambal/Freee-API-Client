@@ -27,7 +27,7 @@ export const getMe = (token: string): Promise<HrUser> => {
     })
     .catch((axiosError: AxiosError) => {
       console.log(axiosError.response)
-      const apiError: ApiClientError = axiosErrorToApiClientError(axiosError, 'hr', URI)
+      const apiError: ApiClientError = axiosErrorToApiClientError(axiosError, 'hr', URI, 'get')
       reject(apiError)
     })
   })
