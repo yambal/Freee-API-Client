@@ -61,7 +61,7 @@ const getAvailableTypes = (token, company_id, employee_id) => {
             });
         })
             .catch((error) => {
-            const apiError = axiosErrorToApiClientError_1.axiosErrorToApiClientError(error, 'hr', URI);
+            const apiError = axiosErrorToApiClientError_1.axiosErrorToApiClientError(error, 'hr', URI, 'get');
             reject(apiError);
         });
     });

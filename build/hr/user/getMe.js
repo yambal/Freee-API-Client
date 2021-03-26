@@ -24,7 +24,7 @@ const getMe = (token) => {
         })
             .catch((axiosError) => {
             console.log(axiosError.response);
-            const apiError = axiosErrorToApiClientError_1.axiosErrorToApiClientError(axiosError, 'hr', URI);
+            const apiError = axiosErrorToApiClientError_1.axiosErrorToApiClientError(axiosError, 'hr', URI, 'get');
             reject(apiError);
         });
     });
