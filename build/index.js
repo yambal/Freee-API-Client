@@ -10,10 +10,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.hr = void 0;
+exports.hr = exports.util = void 0;
 /** Types */
 __exportStar(require("./commonTypes"), exports);
 __exportStar(require("./hr/hrTypes"), exports);
-__exportStar(require("./utilities"), exports);
+exports.util = require("./utilities");
 /** 人事労務API */
 exports.hr = require("./hr/index");
