@@ -12,4 +12,4 @@ export type ApiClientError = {
   errorCode: string
 }
 
-export type V1_HrUri = '/users/me'
+export type V1_HrUri = '/users/me' | '/employees/{emp_id}/time_clocks'
