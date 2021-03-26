@@ -4,6 +4,7 @@ exports.getTimeClocks = exports.getTimeClocksBase = void 0;
 const hrRequest_1 = require("../hrRequest");
 const axiosErrorToApiClientError_1 = require("../../axiosErrorToApiClientError");
 const timeClockTypeUtilities_1 = require("../../utilities/timeClockTypeUtilities");
+const dateUtility_1 = require("../../utilities/dateUtility");
 const URI = '/employees/{emp_id}/time_clocks';
 /**
  * 打刻情報の一覧取得
@@ -19,16 +20,20 @@ const URI = '/employees/{emp_id}/time_clocks';
 /**
  * TODO: 他にオプションアリ
  */
-const getTimeClocksBase = (token, company_id, employee_id) => {
+const getTimeClocksBase = (token, company_id, employee_id, from) => {
     const uri = URI.replace('{emp_id}', `${employee_id}`);
-    return hrRequest_1.hrRequest(token, {
+    const param = {
         company_id
-    }).get(uri);
+    };
+    if (from) {
+        param.from = dateUtility_1.getDateString(from);
+    }
+    return hrRequest_1.hrRequest(token, param).get(uri);
 };
 exports.getTimeClocksBase = getTimeClocksBase;
-const getTimeClocks = (token, company_id, employee_id) => {
+const getTimeClocks = (token, company_id, employee_id, from) => {
     return new Promise((resolve, reject) => {
-        exports.getTimeClocksBase(token, company_id, employee_id)
+        exports.getTimeClocksBase(token, company_id, employee_id, from)
             .then((response) => {
             const timeClocks = response.data.map((one) => {
                 const typeWithLabel = timeClockTypeUtilities_1.typeToTimeClockType(one.type);

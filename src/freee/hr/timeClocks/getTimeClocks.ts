@@ -4,6 +4,7 @@ import { EmployeeTimeClock } from '../hrTypes'
 import { ApiClientError, V1_HrUri } from '../../commonTypes'
 import { axiosErrorToApiClientError } from '../../axiosErrorToApiClientError'
 import { typeToTimeClockType } from '../../utilities/timeClockTypeUtilities'
+import { getDateString } from '../../utilities/dateUtility'
 
 const URI: V1_HrUri = '/employees/{emp_id}/time_clocks'
 
@@ -25,24 +26,35 @@ export const getTimeClocksBase = (
   token: string,
   company_id: number,
   employee_id: number,
+  from?: Date
 ) => {
   const uri = URI.replace('{emp_id}', `${employee_id}`)
 
-  return hrRequest(token, {
+  const param: any = {
     company_id
-  }).get(uri)
+  }
+
+  if(from) {
+    param.from = getDateString(from)
+  }
+
+  return hrRequest(token, param).get(uri)
 }
 
 export const getTimeClocks = (
   token: string,
   company_id: number,
   employee_id: number,
+  from?: Date
 ): Promise<EmployeeTimeClock[]> => {
   return new Promise((resolve: (timeClocks: EmployeeTimeClock[]) => void, reject:(error: ApiClientError) => void) => {
-    getTimeClocksBase(token, company_id, employee_id)
+    getTimeClocksBase(
+      token,
+      company_id,
+      employee_id,
+      from
+    )
     .then((response: AxiosResponse) => {
-
-      
 
       const timeClocks: EmployeeTimeClock[] = response.data.map((one: any) => {
         const typeWithLabel = typeToTimeClockType(one.type)
