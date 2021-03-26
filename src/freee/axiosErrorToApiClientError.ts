@@ -46,6 +46,7 @@ export const axiosErrorToApiClientError = (axiosError: AxiosError, apiName: 'hr'
     apiMessage,
     errorApi: apiName,
     uri,
-    method
+    method,
+    extends: undefined
   }
 }

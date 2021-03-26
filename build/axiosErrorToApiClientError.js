@@ -37,7 +37,8 @@ const axiosErrorToApiClientError = (axiosError, apiName, uri, method) => {
         apiMessage,
         errorApi: apiName,
         uri,
-        method
+        method,
+        extends: undefined
     };
 };
 exports.axiosErrorToApiClientError = axiosErrorToApiClientError;

@@ -7,8 +7,9 @@ export declare type ApiClientError = {
     statusMessage: ApiClientErrorStatusMessage;
     axiosMessage: ApiClientErrorAxiosMessage;
     apiMessage: ApiClientErrorApiMessage;
-    errorApi: 'freee' | 'hr';
-    uri: V1_HrUri;
-    method: 'get' | 'post';
+    errorApi: 'freee' | 'hr' | undefined;
+    uri: V1_HrUri | undefined;
+    method: 'get' | 'post' | undefined;
+    extends: any | undefined;
 };
 export declare type V1_HrUri = '/users/me' | '/employees/{emp_id}/time_clocks' | '/employees/{emp_id}/time_clocks/available_types';
