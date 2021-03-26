@@ -39,7 +39,6 @@ const postTimeClocks = (token, company_id, employee_id, type, base_date, datetim
             resolve(response.data);
         })
             .catch((axiosError) => {
-            console.log(axiosError.response);
             const apiError = axiosErrorToApiClientError_1.axiosErrorToApiClientError(axiosError, 'hr', URI, 'post');
             reject(apiError);
         });

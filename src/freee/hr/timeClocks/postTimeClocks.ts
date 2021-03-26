@@ -61,7 +61,6 @@ export const postTimeClocks = (
       resolve(response.data)
     })
     .catch((axiosError: AxiosError) => {
-      console.log(axiosError.response)
       const apiError: ApiClientError = axiosErrorToApiClientError(axiosError, 'hr', URI, 'post')
       reject(apiError)
     })

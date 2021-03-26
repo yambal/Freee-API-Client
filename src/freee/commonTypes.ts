@@ -9,10 +9,10 @@ export type ApiClientError = {
   statusMessage: ApiClientErrorStatusMessage
   axiosMessage: ApiClientErrorAxiosMessage
   apiMessage: ApiClientErrorApiMessage
-  errorApi: 'freee' | 'hr'|undefined
-  uri: V1_HrUri|undefined
-  method: 'get' | 'post'|undefined
-  extends: any|undefined
+  errorApi: 'freee' | 'hr' | undefined
+  uri: V1_HrUri | undefined
+  method: 'get' | 'post'| undefined
+  extends: any | undefined
 }
 
 export type V1_HrUri = '/users/me'
