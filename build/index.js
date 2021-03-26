@@ -14,5 +14,6 @@ exports.hr = void 0;
 /** Types */
 __exportStar(require("./commonTypes"), exports);
 __exportStar(require("./hr/hrTypes"), exports);
+__exportStar(require("./utilities"), exports);
 /** 人事労務API */
 exports.hr = require("./hr/index");
