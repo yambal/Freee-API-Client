@@ -4,6 +4,7 @@ exports.postTimeClocks = exports.postTimeClocksBase = void 0;
 const hrRequest_1 = require("../hrRequest");
 const dateUtility_1 = require("../../utilities/dateUtility");
 const axiosErrorToApiClientError_1 = require("../../axiosErrorToApiClientError");
+const timeClockTypeUtilities_1 = require("../../utilities/timeClockTypeUtilities");
 const URI = '/employees/{emp_id}/time_clocks';
 /**
  * 打刻情報の登録
@@ -36,7 +37,16 @@ const postTimeClocks = (token, company_id, employee_id, type, base_date, datetim
     return new Promise((resolve, reject) => {
         exports.postTimeClocksBase(token, company_id, employee_id, type, base_date, datetime)
             .then((response) => {
-            resolve(response.data);
+            const timeClock = {
+                date: response.data.date,
+                datetime: new Date(response.data.datetime),
+                id: response.data.id,
+                label: timeClockTypeUtilities_1.typeToTimeClockType(response.data.type)?.label,
+                note: response.data.note,
+                original_datetime: response.data.original_datetime,
+                type: response.data.type
+            };
+            resolve(timeClock);
         })
             .catch((axiosError) => {
             const apiError = axiosErrorToApiClientError_1.axiosErrorToApiClientError(axiosError, 'hr', URI, 'post');

@@ -19,9 +19,10 @@ export type EmployeeTimeClock = {
   id: number
   date: string
   type: TimeClockType
-  datetime: string
+  datetime: Date
   original_datetime: string
   note: string
+  label: TimeClockTypeLabel | undefined
 }
 
 export type TimeClockTypeWithLabel = {

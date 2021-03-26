@@ -7,6 +7,7 @@ import {
 } from '../../utilities/dateUtility'
 import { ApiClientError, V1_HrUri } from '../../commonTypes'
 import { axiosErrorToApiClientError } from '../../axiosErrorToApiClientError'
+import { typeToTimeClockType } from '../../utilities/timeClockTypeUtilities'
 
 const URI: V1_HrUri = '/employees/{emp_id}/time_clocks'
 
@@ -58,7 +59,16 @@ export const postTimeClocks = (
   return new Promise((resolve: (timeClock: EmployeeTimeClock) => void, reject:(error: ApiClientError) => void) => {
     postTimeClocksBase(token, company_id, employee_id, type, base_date, datetime)
     .then((response: AxiosResponse) => {
-      resolve(response.data)
+      const timeClock: EmployeeTimeClock = {
+        date: response.data.date,
+        datetime: new Date(response.data.datetime),
+        id: response.data.id,
+        label: typeToTimeClockType(response.data.type)?.label,
+        note: response.data.note,
+        original_datetime: response.data.original_datetime,
+        type: response.data.type
+      }
+      resolve(timeClock)
     })
     .catch((axiosError: AxiosError) => {
       const apiError: ApiClientError = axiosErrorToApiClientError(axiosError, 'hr', URI, 'post')
