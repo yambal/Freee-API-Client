@@ -9,4 +9,4 @@ export declare type ApiClientError = {
     apiMessage: ApiClientErrorApiMessage;
     errorCode: string;
 };
-export declare type V1_HrUri = '/users/me' | '/employees/{emp_id}/time_clocks';
+export declare type V1_HrUri = '/users/me' | '/employees/{emp_id}/time_clocks' | '/employees/{emp_id}/time_clocks/available_types';

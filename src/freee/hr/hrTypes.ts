@@ -22,3 +22,8 @@ export type EmployeeTimeClock = {
   original_datetime: string
   note: string
 }
+
+export type AvailableTypes = {
+  base_date: string
+  available_types: TimeClockType[]
+}

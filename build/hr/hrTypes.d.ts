@@ -19,3 +19,7 @@ export declare type EmployeeTimeClock = {
     original_datetime: string;
     note: string;
 };
+export declare type AvailableTypes = {
+    base_date: string;
+    available_types: TimeClockType[];
+};

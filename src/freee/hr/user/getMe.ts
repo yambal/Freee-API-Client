@@ -19,7 +19,7 @@ export const getMeBase = (token: string) => {
  * @param token 認証済みのAccessToken
  * @returns ユーザーの
  */
-export const getMe = (token: string) => {
+export const getMe = (token: string): Promise<HrUser> => {
   return new Promise((resolve: (hrUser: HrUser) => void, reject) => {
     getMeBase(token)
     .then((response: AxiosResponse) => {
