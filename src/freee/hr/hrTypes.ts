@@ -13,6 +13,7 @@ export type HrUser = {
 }
 
 export type TimeClockType = "clock_in" | "break_begin" | "break_end" | "clock_out"
+export type TimeClockTypeLabel = "出勤" | "休憩開始" | "休憩終了" | "退勤"
 
 export type EmployeeTimeClock = {
   id: number
@@ -23,7 +24,12 @@ export type EmployeeTimeClock = {
   note: string
 }
 
+export type TimeClockTypeWithLabel = {
+  type: TimeClockType
+  label: TimeClockTypeLabel
+}
+
 export type AvailableTypes = {
-  base_date: string
-  available_types: TimeClockType[]
+  base_date: Date
+  available_types: TimeClockTypeWithLabel[]
 }

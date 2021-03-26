@@ -11,6 +11,7 @@ export declare type HrUser = {
     companies: HrCompany[];
 };
 export declare type TimeClockType = "clock_in" | "break_begin" | "break_end" | "clock_out";
+export declare type TimeClockTypeLabel = "出勤" | "休憩開始" | "休憩終了" | "退勤";
 export declare type EmployeeTimeClock = {
     id: number;
     date: string;
@@ -19,7 +20,11 @@ export declare type EmployeeTimeClock = {
     original_datetime: string;
     note: string;
 };
+export declare type TimeClockTypeWithLabel = {
+    type: TimeClockType;
+    label: TimeClockTypeLabel;
+};
 export declare type AvailableTypes = {
-    base_date: string;
-    available_types: TimeClockType[];
+    base_date: Date;
+    available_types: TimeClockTypeWithLabel[];
 };
