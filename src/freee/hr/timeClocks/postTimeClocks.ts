@@ -59,11 +59,14 @@ export const postTimeClocks = (
   return new Promise((resolve: (timeClock: EmployeeTimeClock) => void, reject:(error: ApiClientError) => void) => {
     postTimeClocksBase(token, company_id, employee_id, type, base_date, datetime)
     .then((response: AxiosResponse) => {
+      const typeWithLabel = typeToTimeClockType(response.data.type)
+      const label = typeWithLabel ? typeWithLabel.label : undefined
+
       const timeClock: EmployeeTimeClock = {
         date: response.data.date,
         datetime: new Date(response.data.datetime),
         id: response.data.id,
-        label: typeToTimeClockType(response.data.type)?.label,
+        label,
         note: response.data.note,
         original_datetime: response.data.original_datetime,
         type: response.data.type

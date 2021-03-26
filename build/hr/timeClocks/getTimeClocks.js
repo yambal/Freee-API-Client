@@ -31,11 +31,13 @@ const getTimeClocks = (token, company_id, employee_id) => {
         exports.getTimeClocksBase(token, company_id, employee_id)
             .then((response) => {
             const timeClocks = response.data.map((one) => {
+                const typeWithLabel = timeClockTypeUtilities_1.typeToTimeClockType(one.type);
+                const label = typeWithLabel ? typeWithLabel.label : undefined;
                 const timeClock = {
                     date: one.date,
                     datetime: new Date(one.datetime),
                     id: one.id,
-                    label: timeClockTypeUtilities_1.typeToTimeClockType(one.type)?.label,
+                    label: label,
                     note: one.note,
                     original_datetime: one.original_datetime,
                     type: one.type

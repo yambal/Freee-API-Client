@@ -37,11 +37,13 @@ const postTimeClocks = (token, company_id, employee_id, type, base_date, datetim
     return new Promise((resolve, reject) => {
         exports.postTimeClocksBase(token, company_id, employee_id, type, base_date, datetime)
             .then((response) => {
+            const typeWithLabel = timeClockTypeUtilities_1.typeToTimeClockType(response.data.type);
+            const label = typeWithLabel ? typeWithLabel.label : undefined;
             const timeClock = {
                 date: response.data.date,
                 datetime: new Date(response.data.datetime),
                 id: response.data.id,
-                label: timeClockTypeUtilities_1.typeToTimeClockType(response.data.type)?.label,
+                label,
                 note: response.data.note,
                 original_datetime: response.data.original_datetime,
                 type: response.data.type
