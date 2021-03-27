@@ -81,3 +81,20 @@ export const getMonth = (date: Date, locale?: string): string => {
   return partsObj.month
 }
 
+/**
+ * 二つのDate間の経過時間を返す
+ * @param a 
+ * @param b 
+ * @returns 
+ */
+export const getElapsedTime = (a: Date, b:Date): {hours: number, minutes: number, seconds: number} => {
+  const elapsedTimeSec = Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60)
+  const hours = Math.floor(elapsedTimeSec / 3600)
+  const minutes = Math.floor((elapsedTimeSec - hours * 3600) / 60)
+  const seconds = elapsedTimeSec - (hours * 3600) - (minutes * 60) 
+  return {
+    hours,
+    minutes,
+    seconds
+  }
+}

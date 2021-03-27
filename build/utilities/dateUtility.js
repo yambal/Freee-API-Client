@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
+exports.getElapsedTime = exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
 const getParts = (date, locale) => {
     const formatter = new Intl.DateTimeFormat(locale, {
         year: "numeric", month: "2-digit", day: "2-digit",
@@ -63,3 +63,21 @@ const getMonth = (date, locale) => {
     return partsObj.month;
 };
 exports.getMonth = getMonth;
+/**
+ * 二つのDate間の経過時間を返す
+ * @param a
+ * @param b
+ * @returns
+ */
+const getElapsedTime = (a, b) => {
+    const elapsedTimeSec = Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60);
+    const hours = Math.floor(elapsedTimeSec / 3600);
+    const minutes = Math.floor((elapsedTimeSec - hours * 3600) / 60);
+    const seconds = elapsedTimeSec - (hours * 3600) - (minutes * 60);
+    return {
+        hours,
+        minutes,
+        seconds
+    };
+};
+exports.getElapsedTime = getElapsedTime;

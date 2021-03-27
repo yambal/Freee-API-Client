@@ -26,3 +26,14 @@ export declare const getYear: (date: Date, locale?: string | undefined) => strin
  * @returns
  */
 export declare const getMonth: (date: Date, locale?: string | undefined) => string;
+/**
+ * 二つのDate間の経過時間を返す
+ * @param a
+ * @param b
+ * @returns
+ */
+export declare const getElapsedTime: (a: Date, b: Date) => {
+    hours: number;
+    minutes: number;
+    seconds: number;
+};
