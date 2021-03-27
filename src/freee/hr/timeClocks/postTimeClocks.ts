@@ -62,13 +62,15 @@ export const postTimeClocks = (
       const typeWithLabel = typeToTimeClockType(response.data.type)
       const label = typeWithLabel ? typeWithLabel.label : undefined
 
+      console.log(`response.data.datetime: ${response.data.datetime}`)
+
       const timeClock: EmployeeTimeClock = {
         date: response.data.date,
         datetime: new Date(response.data.datetime),
         id: response.data.id,
         label,
         note: response.data.note,
-        original_datetime: response.data.original_datetime,
+        original_datetime: new Date(response.data.original_datetime),
         type: response.data.type
       }
       resolve(timeClock)

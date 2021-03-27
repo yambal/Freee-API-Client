@@ -20,7 +20,7 @@ export type EmployeeTimeClock = {
   date: string
   type: TimeClockType
   datetime: Date
-  original_datetime: string
+  original_datetime: Date
   note: string
   label: TimeClockTypeLabel | undefined
 }
