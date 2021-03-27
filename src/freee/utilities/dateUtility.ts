@@ -110,12 +110,9 @@ export const getElapsedTime = (milliseconds: number): {hours: number, minutes: n
  * @param seconds 
  * @returns 
  */
-export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
+export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, minutes: boolean = true, seconds: boolean = false, noneThen: string = "なし") => {
   const elapsedTime = getElapsedTime(milliseconds)
   let res: string = ''
-  if(elapsedTime.hours === 0, elapsedTime.minutes === 0, elapsedTime.seconds === 0){
-    return 'なし'
-  }
   if(elapsedTime.hours > 0 && hours){
     res += `${elapsedTime.hours}時間`
   }
@@ -124,6 +121,9 @@ export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, mi
   }
   if(elapsedTime.seconds > 0 && seconds){
     res += `${elapsedTime.seconds}秒`
+  }
+  if(res.length === 0){
+    return noneThen
   }
   return res
 }
@@ -137,6 +137,6 @@ export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, mi
  * @param seconds 
  * @returns 
  */
-export const getElapsedTimeJpDate = (a: Date, b:Date, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
-  return getElapsedTimeJp(getElapsedMilliseconds(a,b), hours, minutes, seconds)
+export const getElapsedTimeJpDate = (a: Date, b:Date, hours: boolean = true, minutes: boolean = true, seconds: boolean = false, noneThen: string = "なし") => {
+  return getElapsedTimeJp(getElapsedMilliseconds(a,b), hours, minutes, seconds, noneThen)
 }

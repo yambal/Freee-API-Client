@@ -44,7 +44,7 @@ export declare const getElapsedTime: (milliseconds: number) => {
  * @param seconds
  * @returns
  */
-export declare const getElapsedTimeJp: (milliseconds: number, hours?: boolean, minutes?: boolean, seconds?: boolean) => string;
+export declare const getElapsedTimeJp: (milliseconds: number, hours?: boolean, minutes?: boolean, seconds?: boolean, noneThen?: string) => string;
 /**
  * 二つの時刻間の経過時間を日本語の経過時間として返す
  * @param a
@@ -54,4 +54,4 @@ export declare const getElapsedTimeJp: (milliseconds: number, hours?: boolean, m
  * @param seconds
  * @returns
  */
-export declare const getElapsedTimeJpDate: (a: Date, b: Date, hours?: boolean, minutes?: boolean, seconds?: boolean) => string;
+export declare const getElapsedTimeJpDate: (a: Date, b: Date, hours?: boolean, minutes?: boolean, seconds?: boolean, noneThen?: string) => string;

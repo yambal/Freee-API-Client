@@ -91,12 +91,9 @@ exports.getElapsedTime = getElapsedTime;
  * @param seconds
  * @returns
  */
-const getElapsedTimeJp = (milliseconds, hours = true, minutes = true, seconds = false) => {
+const getElapsedTimeJp = (milliseconds, hours = true, minutes = true, seconds = false, noneThen = "なし") => {
     const elapsedTime = exports.getElapsedTime(milliseconds);
     let res = '';
-    if (elapsedTime.hours === 0, elapsedTime.minutes === 0, elapsedTime.seconds === 0) {
-        return 'なし';
-    }
     if (elapsedTime.hours > 0 && hours) {
         res += `${elapsedTime.hours}時間`;
     }
@@ -105,6 +102,9 @@ const getElapsedTimeJp = (milliseconds, hours = true, minutes = true, seconds = 
     }
     if (elapsedTime.seconds > 0 && seconds) {
         res += `${elapsedTime.seconds}秒`;
+    }
+    if (res.length === 0) {
+        return noneThen;
     }
     return res;
 };
@@ -118,7 +118,7 @@ exports.getElapsedTimeJp = getElapsedTimeJp;
  * @param seconds
  * @returns
  */
-const getElapsedTimeJpDate = (a, b, hours = true, minutes = true, seconds = false) => {
-    return exports.getElapsedTimeJp(getElapsedMilliseconds(a, b), hours, minutes, seconds);
+const getElapsedTimeJpDate = (a, b, hours = true, minutes = true, seconds = false, noneThen = "なし") => {
+    return exports.getElapsedTimeJp(getElapsedMilliseconds(a, b), hours, minutes, seconds, noneThen);
 };
 exports.getElapsedTimeJpDate = getElapsedTimeJpDate;
