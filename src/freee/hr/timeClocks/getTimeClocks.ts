@@ -26,7 +26,8 @@ export const getTimeClocksBase = (
   token: string,
   company_id: number,
   employee_id: number,
-  from?: Date
+  from_date?: Date,
+  to_date?:Date
 ) => {
   const uri = URI.replace('{emp_id}', `${employee_id}`)
 
@@ -34,8 +35,11 @@ export const getTimeClocksBase = (
     company_id
   }
 
-  if(from) {
-    param.from = getDateString(from)
+  if(from_date) {
+    param.from_date = getDateString(from_date)
+  }
+  if(to_date) {
+    param.to_date= getDateString(to_date)
   }
 
   return hrRequest(token, param).get(uri)

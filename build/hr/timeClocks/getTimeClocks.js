@@ -20,13 +20,16 @@ const URI = '/employees/{emp_id}/time_clocks';
 /**
  * TODO: 他にオプションアリ
  */
-const getTimeClocksBase = (token, company_id, employee_id, from) => {
+const getTimeClocksBase = (token, company_id, employee_id, from_date, to_date) => {
     const uri = URI.replace('{emp_id}', `${employee_id}`);
     const param = {
         company_id
     };
-    if (from) {
-        param.from = dateUtility_1.getDateString(from);
+    if (from_date) {
+        param.from_date = dateUtility_1.getDateString(from_date);
+    }
+    if (to_date) {
+        param.to_date = dateUtility_1.getDateString(to_date);
     }
     return hrRequest_1.hrRequest(token, param).get(uri);
 };

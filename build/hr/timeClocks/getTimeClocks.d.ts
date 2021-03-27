@@ -14,5 +14,5 @@ import { EmployeeTimeClock } from '../hrTypes';
 /**
  * TODO: 他にオプションアリ
  */
-export declare const getTimeClocksBase: (token: string, company_id: number, employee_id: number, from?: Date | undefined) => Promise<AxiosResponse<any>>;
+export declare const getTimeClocksBase: (token: string, company_id: number, employee_id: number, from_date?: Date | undefined, to_date?: Date | undefined) => Promise<AxiosResponse<any>>;
 export declare const getTimeClocks: (token: string, company_id: number, employee_id: number, from?: Date | undefined) => Promise<EmployeeTimeClock[]>;
