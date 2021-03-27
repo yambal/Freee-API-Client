@@ -113,6 +113,9 @@ export const getElapsedTime = (milliseconds: number): {hours: number, minutes: n
 export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
   const elapsedTime = getElapsedTime(milliseconds)
   let res: string = ''
+  if(elapsedTime.hours === 0, elapsedTime.minutes === 0, elapsedTime.seconds === 0){
+    return 'なし'
+  }
   if(elapsedTime.hours > 0 && hours){
     res += `${elapsedTime.hours}時間`
   }

@@ -94,6 +94,9 @@ exports.getElapsedTime = getElapsedTime;
 const getElapsedTimeJp = (milliseconds, hours = true, minutes = true, seconds = false) => {
     const elapsedTime = exports.getElapsedTime(milliseconds);
     let res = '';
+    if (elapsedTime.hours === 0, elapsedTime.minutes === 0, elapsedTime.seconds === 0) {
+        return 'なし';
+    }
     if (elapsedTime.hours > 0 && hours) {
         res += `${elapsedTime.hours}時間`;
     }
