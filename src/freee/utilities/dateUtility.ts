@@ -119,7 +119,7 @@ export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, mi
   if(elapsedTime.hours > 0 && hours){
     res += `${elapsedTime.hours}時間`
   }
-  if(elapsedTime.minutes > 0 && seconds){
+  if(elapsedTime.minutes > 0 && minutes){
     res += `${elapsedTime.minutes}分`
   }
   if(elapsedTime.seconds > 0 && seconds){
