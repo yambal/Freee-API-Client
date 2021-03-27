@@ -81,8 +81,8 @@ export const getMonth = (date: Date, locale?: string): string => {
   return partsObj.month
 }
 
-const getElapsedMs = (a: Date, b:Date) => {
-  return Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60)
+const getElapsedMilliseconds = (a: Date, b:Date) => {
+  return Math.round(Math.abs(a.getTime() - b.getTime()))
 }
 
 /**
@@ -91,9 +91,10 @@ const getElapsedMs = (a: Date, b:Date) => {
  * @returns 
  */
 export const getElapsedTime = (milliseconds: number): {hours: number, minutes: number, seconds: number} => {
-  const hours = Math.floor(milliseconds / 3600)
-  const minutes = Math.floor((milliseconds - hours * 3600) / 60)
-  const seconds = milliseconds - (hours * 3600) - (minutes * 60) 
+  const sec = Math.round(milliseconds / 1000)
+  const hours = Math.floor(sec / 3600)
+  const minutes = Math.floor((sec - hours * 3600) / 60)
+  const seconds = sec - (hours * 3600) - (minutes * 60) 
   return {
     hours,
     minutes,
@@ -134,5 +135,5 @@ export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, mi
  * @returns 
  */
 export const getElapsedTimeJpDate = (a: Date, b:Date, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
-  return getElapsedTimeJp(getElapsedMs(a,b), hours, minutes, seconds)
+  return getElapsedTimeJp(getElapsedMilliseconds(a,b), hours, minutes, seconds)
 }

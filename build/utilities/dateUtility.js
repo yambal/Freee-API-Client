@@ -63,8 +63,8 @@ const getMonth = (date, locale) => {
     return partsObj.month;
 };
 exports.getMonth = getMonth;
-const getElapsedMs = (a, b) => {
-    return Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60);
+const getElapsedMilliseconds = (a, b) => {
+    return Math.round(Math.abs(a.getTime() - b.getTime()));
 };
 /**
  * ミリ秒を経過時間として時間、分、秒で返す
@@ -72,9 +72,10 @@ const getElapsedMs = (a, b) => {
  * @returns
  */
 const getElapsedTime = (milliseconds) => {
-    const hours = Math.floor(milliseconds / 3600);
-    const minutes = Math.floor((milliseconds - hours * 3600) / 60);
-    const seconds = milliseconds - (hours * 3600) - (minutes * 60);
+    const sec = Math.round(milliseconds / 1000);
+    const hours = Math.floor(sec / 3600);
+    const minutes = Math.floor((sec - hours * 3600) / 60);
+    const seconds = sec - (hours * 3600) - (minutes * 60);
     return {
         hours,
         minutes,
@@ -115,6 +116,6 @@ exports.getElapsedTimeJp = getElapsedTimeJp;
  * @returns
  */
 const getElapsedTimeJpDate = (a, b, hours = true, minutes = true, seconds = false) => {
-    return exports.getElapsedTimeJp(getElapsedMs(a, b), hours, minutes, seconds);
+    return exports.getElapsedTimeJp(getElapsedMilliseconds(a, b), hours, minutes, seconds);
 };
 exports.getElapsedTimeJpDate = getElapsedTimeJpDate;
