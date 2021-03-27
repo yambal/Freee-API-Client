@@ -3,11 +3,12 @@
     "axios": "^0.21.1"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "node test/index.js"
   },
   "name": "freee-api-client",
   "description": "freee api for js",
-  "version": "0.3.3",
+  "version": "0.3.31",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "directories": {

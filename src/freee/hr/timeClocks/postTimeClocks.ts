@@ -59,21 +59,22 @@ export const postTimeClocks = (
   return new Promise((resolve: (timeClock: EmployeeTimeClock) => void, reject:(error: ApiClientError) => void) => {
     postTimeClocksBase(token, company_id, employee_id, type, base_date, datetime)
     .then((response: AxiosResponse) => {
-      const typeWithLabel = typeToTimeClockType(response.data.type)
+      const employee_time_clock: EmployeeTimeClock = response.data.employee_time_clock
+      const typeWithLabel = typeToTimeClockType(employee_time_clock.type)
       const label = typeWithLabel ? typeWithLabel.label : undefined
 
-      console.log(`response.data: ${JSON.stringify(response.data, null, 2)}`)
-      console.log(`response.data.datetime: ${response.data.datetime}`)
-      console.log(`response.data.original_datetime: ${response.data.original_datetime}`)
+      console.log(`response.data: ${JSON.stringify(employee_time_clock, null, 2)}`)
+      console.log(`response.data.datetime: ${employee_time_clock.datetime}`)
+      console.log(`response.data.original_datetime: ${employee_time_clock.original_datetime}`)
 
       const timeClock: EmployeeTimeClock = {
-        date: response.data.date,
-        datetime: new Date(response.data.datetime),
-        id: response.data.id,
+        date: employee_time_clock.date,
+        datetime: new Date(employee_time_clock.datetime),
+        id: employee_time_clock.id,
         label,
-        note: response.data.note,
-        original_datetime: new Date(response.data.original_datetime),
-        type: response.data.type
+        note: employee_time_clock.note,
+        original_datetime: new Date(employee_time_clock.original_datetime),
+        type: employee_time_clock.type
       }
       resolve(timeClock)
     })
