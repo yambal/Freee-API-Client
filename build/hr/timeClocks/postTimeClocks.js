@@ -39,7 +39,9 @@ const postTimeClocks = (token, company_id, employee_id, type, base_date, datetim
             .then((response) => {
             const typeWithLabel = timeClockTypeUtilities_1.typeToTimeClockType(response.data.type);
             const label = typeWithLabel ? typeWithLabel.label : undefined;
+            console.log(`response.data: ${JSON.stringify(response.data, null, 2)}`);
             console.log(`response.data.datetime: ${response.data.datetime}`);
+            console.log(`response.data.original_datetime: ${response.data.original_datetime}`);
             const timeClock = {
                 date: response.data.date,
                 datetime: new Date(response.data.datetime),
