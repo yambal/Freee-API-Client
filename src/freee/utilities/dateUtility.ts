@@ -98,3 +98,18 @@ export const getElapsedTime = (a: Date, b:Date): {hours: number, minutes: number
     seconds
   }
 }
+
+export const getElapsedTimeJp = (a: Date, b:Date, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
+  const elapsedTime = getElapsedTime(a,b)
+  let res: string = ''
+  if(elapsedTime.hours > 0 && hours){
+    res += `${elapsedTime.hours}時間`
+  }
+  if(elapsedTime.minutes > 0 && seconds){
+    res += `${elapsedTime.minutes}分`
+  }
+  if(elapsedTime.seconds > 0 && seconds){
+    res += `${elapsedTime.seconds}秒`
+  }
+  return res
+}

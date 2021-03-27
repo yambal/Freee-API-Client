@@ -37,3 +37,4 @@ export declare const getElapsedTime: (a: Date, b: Date) => {
     minutes: number;
     seconds: number;
 };
+export declare const getElapsedTimeJp: (a: Date, b: Date, hours?: boolean, minutes?: boolean, seconds?: boolean) => string;

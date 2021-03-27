@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getElapsedTime = exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
+exports.getElapsedTimeJp = exports.getElapsedTime = exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
 const getParts = (date, locale) => {
     const formatter = new Intl.DateTimeFormat(locale, {
         year: "numeric", month: "2-digit", day: "2-digit",
@@ -81,3 +81,18 @@ const getElapsedTime = (a, b) => {
     };
 };
 exports.getElapsedTime = getElapsedTime;
+const getElapsedTimeJp = (a, b, hours = true, minutes = true, seconds = false) => {
+    const elapsedTime = exports.getElapsedTime(a, b);
+    let res = '';
+    if (elapsedTime.hours > 0 && hours) {
+        res += `${elapsedTime.hours}時間`;
+    }
+    if (elapsedTime.minutes > 0 && seconds) {
+        res += `${elapsedTime.minutes}分`;
+    }
+    if (elapsedTime.seconds > 0 && seconds) {
+        res += `${elapsedTime.seconds}秒`;
+    }
+    return res;
+};
+exports.getElapsedTimeJp = getElapsedTimeJp;
