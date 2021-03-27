@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getElapsedTimeJpDate = exports.getElapsedTimeJp = exports.getElapsedTime = exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
+exports.getElapsedTimeJpDate = exports.getElapsedTimeJp = exports.getElapsedTime = exports.getReadableTime = exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
 const getParts = (date, locale) => {
     const formatter = new Intl.DateTimeFormat(locale, {
         year: "numeric", month: "2-digit", day: "2-digit",
@@ -63,6 +63,20 @@ const getMonth = (date, locale) => {
     return partsObj.month;
 };
 exports.getMonth = getMonth;
+/**
+ * 現在と同日の場合は日付を日付を付けない
+ * @param date
+ * @param locale
+ * @returns
+ */
+const getReadableTime = (date, locale) => {
+    const partsObj = getPartsObj(date, locale || "Ja-jp");
+    if (exports.getDateString(date) === exports.getDateString(new Date())) {
+        return `${partsObj.hour}:${partsObj.minute}:${partsObj.second}`;
+    }
+    return `${partsObj.year}-${partsObj.month}-${partsObj.day} ${partsObj.hour}:${partsObj.minute}:${partsObj.second}`;
+};
+exports.getReadableTime = getReadableTime;
 const getElapsedMilliseconds = (a, b) => {
     return Math.round(Math.abs(a.getTime() - b.getTime()));
 };

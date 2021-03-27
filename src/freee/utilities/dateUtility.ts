@@ -81,6 +81,21 @@ export const getMonth = (date: Date, locale?: string): string => {
   return partsObj.month
 }
 
+/**
+ * 現在と同日の場合は日付を日付を付けない
+ * @param date 
+ * @param locale 
+ * @returns 
+ */
+export const getReadableTime = (date: Date, locale?: string): string => {
+  const partsObj = getPartsObj(date, locale || "Ja-jp")
+  if(getDateString(date) === getDateString(new Date())) {
+    return `${partsObj.hour}:${partsObj.minute}:${partsObj.second}`
+  }
+  return `${partsObj.year}-${partsObj.month}-${partsObj.day} ${partsObj.hour}:${partsObj.minute}:${partsObj.second}`
+}
+
+
 const getElapsedMilliseconds = (a: Date, b:Date) => {
   return Math.round(Math.abs(a.getTime() - b.getTime()))
 }

@@ -27,6 +27,13 @@ export declare const getYear: (date: Date, locale?: string | undefined) => strin
  */
 export declare const getMonth: (date: Date, locale?: string | undefined) => string;
 /**
+ * 現在と同日の場合は日付を日付を付けない
+ * @param date
+ * @param locale
+ * @returns
+ */
+export declare const getReadableTime: (date: Date, locale?: string | undefined) => string;
+/**
  * ミリ秒を経過時間として時間、分、秒で返す
  * @param milliseconds
  * @returns
