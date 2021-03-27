@@ -27,14 +27,31 @@ export declare const getYear: (date: Date, locale?: string | undefined) => strin
  */
 export declare const getMonth: (date: Date, locale?: string | undefined) => string;
 /**
- * 二つのDate間の経過時間を返す
- * @param a
- * @param b
+ * ミリ秒を経過時間として時間、分、秒で返す
+ * @param milliseconds
  * @returns
  */
-export declare const getElapsedTime: (a: Date, b: Date) => {
+export declare const getElapsedTime: (milliseconds: number) => {
     hours: number;
     minutes: number;
     seconds: number;
 };
-export declare const getElapsedTimeJp: (a: Date, b: Date, hours?: boolean, minutes?: boolean, seconds?: boolean) => string;
+/**
+ * ミリ秒を日本語の経過時間として返す
+ * @param milliseconds
+ * @param hours
+ * @param minutes
+ * @param seconds
+ * @returns
+ */
+export declare const getElapsedTimeJp: (milliseconds: number, hours?: boolean, minutes?: boolean, seconds?: boolean) => string;
+/**
+ * 二つの時刻間の経過時間を日本語の経過時間として返す
+ * @param a
+ * @param b
+ * @param hours
+ * @param minutes
+ * @param seconds
+ * @returns
+ */
+export declare const getElapsedTimeJpDate: (a: Date, b: Date, hours?: boolean, minutes?: boolean, seconds?: boolean) => string;

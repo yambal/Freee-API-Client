@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getElapsedTimeJp = exports.getElapsedTime = exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
+exports.getElapsedTimeJpDate = exports.getElapsedTimeJp = exports.getElapsedTime = exports.getMonth = exports.getYear = exports.getDateTimeString = exports.getDateString = void 0;
 const getParts = (date, locale) => {
     const formatter = new Intl.DateTimeFormat(locale, {
         year: "numeric", month: "2-digit", day: "2-digit",
@@ -63,17 +63,18 @@ const getMonth = (date, locale) => {
     return partsObj.month;
 };
 exports.getMonth = getMonth;
+const getElapsedMs = (a, b) => {
+    return Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60);
+};
 /**
- * 二つのDate間の経過時間を返す
- * @param a
- * @param b
+ * ミリ秒を経過時間として時間、分、秒で返す
+ * @param milliseconds
  * @returns
  */
-const getElapsedTime = (a, b) => {
-    const elapsedTimeSec = Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60);
-    const hours = Math.floor(elapsedTimeSec / 3600);
-    const minutes = Math.floor((elapsedTimeSec - hours * 3600) / 60);
-    const seconds = elapsedTimeSec - (hours * 3600) - (minutes * 60);
+const getElapsedTime = (milliseconds) => {
+    const hours = Math.floor(milliseconds / 3600);
+    const minutes = Math.floor((milliseconds - hours * 3600) / 60);
+    const seconds = milliseconds - (hours * 3600) - (minutes * 60);
     return {
         hours,
         minutes,
@@ -81,8 +82,16 @@ const getElapsedTime = (a, b) => {
     };
 };
 exports.getElapsedTime = getElapsedTime;
-const getElapsedTimeJp = (a, b, hours = true, minutes = true, seconds = false) => {
-    const elapsedTime = exports.getElapsedTime(a, b);
+/**
+ * ミリ秒を日本語の経過時間として返す
+ * @param milliseconds
+ * @param hours
+ * @param minutes
+ * @param seconds
+ * @returns
+ */
+const getElapsedTimeJp = (milliseconds, hours = true, minutes = true, seconds = false) => {
+    const elapsedTime = exports.getElapsedTime(milliseconds);
     let res = '';
     if (elapsedTime.hours > 0 && hours) {
         res += `${elapsedTime.hours}時間`;
@@ -96,3 +105,16 @@ const getElapsedTimeJp = (a, b, hours = true, minutes = true, seconds = false) =
     return res;
 };
 exports.getElapsedTimeJp = getElapsedTimeJp;
+/**
+ * 二つの時刻間の経過時間を日本語の経過時間として返す
+ * @param a
+ * @param b
+ * @param hours
+ * @param minutes
+ * @param seconds
+ * @returns
+ */
+const getElapsedTimeJpDate = (a, b, hours = true, minutes = true, seconds = false) => {
+    return exports.getElapsedTimeJp(getElapsedMs(a, b), hours, minutes, seconds);
+};
+exports.getElapsedTimeJpDate = getElapsedTimeJpDate;

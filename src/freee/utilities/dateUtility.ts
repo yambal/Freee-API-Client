@@ -81,17 +81,19 @@ export const getMonth = (date: Date, locale?: string): string => {
   return partsObj.month
 }
 
+const getElapsedMs = (a: Date, b:Date) => {
+  return Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60)
+}
+
 /**
- * 二つのDate間の経過時間を返す
- * @param a 
- * @param b 
+ * ミリ秒を経過時間として時間、分、秒で返す
+ * @param milliseconds 
  * @returns 
  */
-export const getElapsedTime = (a: Date, b:Date): {hours: number, minutes: number, seconds: number} => {
-  const elapsedTimeSec = Math.round(Math.abs(a.getTime() - b.getTime()) / 1000 / 60)
-  const hours = Math.floor(elapsedTimeSec / 3600)
-  const minutes = Math.floor((elapsedTimeSec - hours * 3600) / 60)
-  const seconds = elapsedTimeSec - (hours * 3600) - (minutes * 60) 
+export const getElapsedTime = (milliseconds: number): {hours: number, minutes: number, seconds: number} => {
+  const hours = Math.floor(milliseconds / 3600)
+  const minutes = Math.floor((milliseconds - hours * 3600) / 60)
+  const seconds = milliseconds - (hours * 3600) - (minutes * 60) 
   return {
     hours,
     minutes,
@@ -99,8 +101,16 @@ export const getElapsedTime = (a: Date, b:Date): {hours: number, minutes: number
   }
 }
 
-export const getElapsedTimeJp = (a: Date, b:Date, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
-  const elapsedTime = getElapsedTime(a,b)
+/**
+ * ミリ秒を日本語の経過時間として返す
+ * @param milliseconds 
+ * @param hours 
+ * @param minutes 
+ * @param seconds 
+ * @returns 
+ */
+export const getElapsedTimeJp = (milliseconds: number, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
+  const elapsedTime = getElapsedTime(milliseconds)
   let res: string = ''
   if(elapsedTime.hours > 0 && hours){
     res += `${elapsedTime.hours}時間`
@@ -112,4 +122,17 @@ export const getElapsedTimeJp = (a: Date, b:Date, hours: boolean = true, minutes
     res += `${elapsedTime.seconds}秒`
   }
   return res
+}
+
+/**
+ * 二つの時刻間の経過時間を日本語の経過時間として返す
+ * @param a 
+ * @param b 
+ * @param hours 
+ * @param minutes 
+ * @param seconds 
+ * @returns 
+ */
+export const getElapsedTimeJpDate = (a: Date, b:Date, hours: boolean = true, minutes: boolean = true, seconds: boolean = false) => {
+  return getElapsedTimeJp(getElapsedMs(a,b), hours, minutes, seconds)
 }

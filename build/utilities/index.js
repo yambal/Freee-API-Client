@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getElapsedTimeJp = exports.getElapsedTime = exports.getDateString = exports.getDateTimeString = void 0;
+exports.getElapsedTimeJpDate = exports.getElapsedTimeJp = exports.getElapsedTime = exports.getDateString = exports.getDateTimeString = void 0;
 var dateUtility_1 = require("./dateUtility");
 Object.defineProperty(exports, "getDateTimeString", { enumerable: true, get: function () { return dateUtility_1.getDateTimeString; } });
 var dateUtility_2 = require("./dateUtility");
@@ -9,3 +9,5 @@ var dateUtility_3 = require("./dateUtility");
 Object.defineProperty(exports, "getElapsedTime", { enumerable: true, get: function () { return dateUtility_3.getElapsedTime; } });
 var dateUtility_4 = require("./dateUtility");
 Object.defineProperty(exports, "getElapsedTimeJp", { enumerable: true, get: function () { return dateUtility_4.getElapsedTimeJp; } });
+var dateUtility_5 = require("./dateUtility");
+Object.defineProperty(exports, "getElapsedTimeJpDate", { enumerable: true, get: function () { return dateUtility_5.getElapsedTimeJpDate; } });
